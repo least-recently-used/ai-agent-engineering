@@ -1,0 +1,42 @@
+from openai import OpenAI
+from dotenv import load_dotenv
+import os
+#Load config
+load_dotenv()
+
+#Create AI client
+
+client= OpenAI(
+    base_url=os.getenv("BASE_URL"),
+    api_key=os.getenv("API_KEY")
+)
+
+print("="*40)
+print(".  My AI Assistant")
+print("="*40)
+
+message_history = []
+
+while True:
+    user_input = input("You: ")
+    message_history.append({"role": "user", "content": user_input})
+    if user_input.lower() in ["exit", "quit"]:
+        print("Exiting the AI Assistant. Goodbye!")
+        break
+
+    response = client.chat.completions.create(
+        model=os.getenv("MODEL"),
+        messages=message_history
+    )
+    user_response = response.choices[0].message.content
+
+    message_history.append({"role": "assistant", "content": user_response})
+
+    print("AI: " + user_response)
+    print("="*40)
+
+    print("Message History:")
+    for message in message_history:
+        print(f"{message['role'].capitalize()}: {message['content']}")  
+    print("="*40)
+
