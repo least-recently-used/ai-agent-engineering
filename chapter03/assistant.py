@@ -15,12 +15,27 @@ print("="*40)
 print(".  My AI Assistant")
 print("="*40)
 
+roles = {
+    "1": "You are a Travel guide AI assistant. You provide information about travel destinations, tips, and recommendations. give answer in 3 lines.",
+    "2": "You are a teacher AI assistant. You provide information about various subjects, answer questions, and help with learning. give answer in 3 lines.",
+    "3": "You are a player AI assistant. You provide information about various games, answer questions, and help with gaming strategies. give answer in 3 lines."
+}
+
+choice = input("Choose a role (1: Travel Guide, 2: Teacher, 3: Player): ")
+if choice not in roles:
+    print("Invalid choice. Defaulting to Travel Guide.")
+    choice = "1"
+
+
 message_history = [{
     "role": "system",
     #"content": "You are a teacher AI assistant. You provide information about various subjects, answer questions, and help with learning. give answer in 3 lines."
-    "content": "You are a Travel guide AI assistant. You provide information about travel destinations, tips, and recommendations. "
+    "content": "You are a helpful AI assistant."
     "give answer in 3 lines"
 }]
+
+
+print(f"You have chosen the role: {roles[choice]}")
 
 while True:
     user_input = input("You: ")
