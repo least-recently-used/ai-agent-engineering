@@ -30,8 +30,7 @@ if choice not in roles:
 message_history = [{
     "role": "system",
     #"content": "You are a teacher AI assistant. You provide information about various subjects, answer questions, and help with learning. give answer in 3 lines."
-    "content": "You are a helpful AI assistant."
-    "give answer in 3 lines"
+    "content": roles[choice] 
 }]
 
 
@@ -55,8 +54,8 @@ while True:
     print("AI: " + user_response)
     print("="*40)
 
-    # print("Message History:")
-    # for message in message_history:
-    #     print(f"{message['role'].capitalize()}: {message['content']}")  
-    # print("="*40)
+    print("Message History:")
+    for message in message_history:
+        print(f"{message['role'].capitalize()}: {message['content']}")  
+    print("="*40)
 
